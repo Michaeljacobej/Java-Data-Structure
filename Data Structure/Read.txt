@@ -235,7 +235,7 @@ The list of data structures in java listed below
         - Size: Determining the number of elements in the queue
         - Empty CheckK Checking if the queue is empty
 
-      # Graph are data structure that represent a collection of interconnected nodes or vertices
+    # Graph are data structure that represent a collection of interconnected nodes or vertices
 
         a. Advantages
         - Versatility : graphs can represent a wide range of real world scenarios
