@@ -33,11 +33,10 @@ public class DataStructure {
 
         System.out.println("Max is " + max);
     }
-    
     // ArrayList
     public void arrayList() {
         ArrayList<Integer> numbers = new ArrayList<>(List.of(10, 20, 30, 40, 50));
-
+        
         System.out.println("Element at index 0:" + numbers.get(0));
         System.out.println("Element at index 2:" + numbers.get(2));
         System.out.println("Element at index 4:" + numbers.get(4));
