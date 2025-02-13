@@ -14,25 +14,26 @@ The list of data structures in java listed below
 
     1. Arrays is a basic and often used data structure in the context of java data structure
 
-    a. Advantages
+      a. Advantages
 
-    - Data Organization Arrays Provides a structured way to store and organize elements improving data management
-    - Random Access Elemnt can be accessed directly using their index , allowing for efficient retrieval and modification
-    - fixed size arrays have a predetermined size enabling efficient memory location
-    - memory efficient arrays optimize memory usage by sorting elements in continugous regious
-    - compability arrays are widely supported in java , making them compability with various framework and tools
+        - Data Organization Arrays Provides a structured way to store and organize elements improving data management
+        - Random Access Elemnt can be accessed directly using their index , allowing for efficient retrieval and modification
+        - fixed size arrays have a predetermined size enabling efficient memory location
+        - memory efficient arrays optimize memory usage by sorting elements in continugous regious
+        - compability arrays are widely supported in java , making them compability with various framework and tools
+      
       b. Disadvantages:
-    - fixed size arrays cannot be dynamically rezised , requiring recreation for size changes
-    - memory wastage unused element in larger arrays can lead to memory wastage
-    - Insertion and Deletion Overhead Inserting or Deleting elements in the middle of an array requires shifting subsequent element resulting in inefficiency
-    - Lack of flexibility Arrays have rigid data types and cannot accomodate different data kinds without additional arrays or data structure
+        - fixed size arrays cannot be dynamically rezised , requiring recreation for size changes
+        - memory wastage unused element in larger arrays can lead to memory wastage
+        - Insertion and Deletion Overhead Inserting or Deleting elements in the middle of an array requires shifting subsequent element resulting in inefficiency
+        - Lack of flexibility Arrays have rigid data types and cannot accomodate different data kinds without additional arrays or data structure
+      
       c. Function
-
-    - Creating Array Declare and initialises an array with specific size using the array type and the new keyword
-    - Accesing Elements use the index to access individual elements in the array
-    - modifying element Update the value of an element by assigning a new value to specifix index of an array
-    - finding length use the length attribute to determine the arrays length
-    - iterating through array use loop to go through each element in the array execure
+        - Creating Array Declare and initialises an array with specific size using the array type and the new keyword
+        - Accesing Elements use the index to access individual elements in the array
+        - modifying element Update the value of an element by assigning a new value to specifix index of an array
+        - finding length use the length attribute to determine the arrays length
+        - iterating through array use loop to go through each element in the array execure
 
     2.  ArrayList in java dynamix data structure that allows for the storage and manipulation element
 
