@@ -1,0 +1,17 @@
+OOP is a methodology or paragdism to design program using a Object and Classes
+
+there are several oop concept
+
+- Abstraction
+- Inheritance
+- Encasulaption
+- Object
+- Class
+- polymorphism
+
+1. class is a blueprint from which invidual object are created or we can say a class is a data type of an object type
+2. Object is an entity that has two characteristic (States and behaviour) , object is a variable of the type class
+3. inheritance is a process by which we can reuse the functionalities of existing classes to new classes
+4. polymorphism means many form .  polymorphism is useful when create multiple form with the same name of single entity . to implement polymorphism in java we use two concept method overloading and method overiding
+5. abstraction is a technique of hiding internal details and showing functionalities . the abstract classes and interfaces are used to achieve abstraction in java
+6. encasulaption is process of binding the data members attributes and method together
