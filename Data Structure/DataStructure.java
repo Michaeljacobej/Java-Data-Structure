@@ -34,7 +34,6 @@ public class DataStructure {
         System.out.println("Max is " + max);
     }
     
-
     // ArrayList
     public void arrayList() {
         ArrayList<Integer> numbers = new ArrayList<>(List.of(10, 20, 30, 40, 50));
@@ -273,7 +272,7 @@ public class DataStructure {
         }  
     }
 
-    
+
     public static void main(String[] args) {
         
  
