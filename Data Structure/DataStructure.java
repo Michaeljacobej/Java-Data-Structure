@@ -222,7 +222,6 @@ public class DataStructure {
         }  
     }
 
-
     public void stack() {
         // Create a stack  
         Stack<Integer> stack = new Stack<>();
@@ -274,8 +273,7 @@ public class DataStructure {
         }  
     }
 
-
-
+    
     public static void main(String[] args) {
         
  
