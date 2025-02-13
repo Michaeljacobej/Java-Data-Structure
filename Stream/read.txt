@@ -1,0 +1,61 @@
+Java 8 Stream
+
+Java provides a new additional package in Java 8 called java.util.stream. This package consists of classes, interfaces and enum to allows functional-style operations on the elements. You can use stream by importing java.util.stream package.
+
+Stream provides following features:
+
+	- Stream does not store elements. It simply conveys elements from a source such as a data structure, an array, or an I/O channel, through a pipeline of computational operations.
+	
+	- Stream is functional in nature. Operations performed on a stream does not modify it's source. For example, filtering a Stream obtained from a collection produces a new 	
+	
+	- Stream without the filtered elements, rather than removing elements from the source collection.
+	
+	- Stream is lazy and evaluates code only when required.
+	
+	-The elements of a stream are only visited once during the life of a stream. Like an Iterator, a new stream must be generated to revisit the same elements of the source.
+
+We can use stream to filter, collect, print, and convert from one data structure to other etc. In the following examples, we have applied various operations with the help of stream.
+
+
+Various Core Operations Over Streams
+  
+1. Intermediate Operations
+Intermediate operations in Java Streams return another Stream. They are typically used to transform or filter the elements of the original Stream. Since they are lazy, meaning they do not perform any processing until a terminal operation is called, multiple intermediate operations can be chained together.
+
+
+Common Intermediate Operations:
+
+map(Function<T, R>): Transforms each element of the Stream into another form using the provided function.
+filter(Predicate<T>): Selects elements from the Stream based on a specified condition.
+flatMap(Function<T, Stream<R>>): Transforms each element into zero or more elements by applying a function that returns a stream for each element.
+distinct(): Removes duplicate elements from the Stream.
+sorted(): Sorts the elements of the Stream.
+limit(long n): Truncates the Stream to be no longer than the specified size.
+skip(long n): Skips the first n elements of the Stream.
+peek(Consumer<T>): Performs a specified action on each element of the Stream without consuming the elements.
+
+2. Terminal Operations
+Terminal operations are those operations that consume the Stream and produce a result, such as a value, a collection, or even a side effect. Once a terminal operation is invoked, the Stream is processed and cannot be reused.
+
+Common Terminal Operations:
+
+forEach(Consumer<T>): Acts as each element of the Stream.
+collect(Collector<T, A, R>): Reduces the elements of the Stream into a mutable result container, such as a list or a map.
+reduce(BinaryOperator<T>): Reduces the elements of the Stream to a single value using an associative accumulation function.
+count(): Returns the count of elements in the Stream.
+anyMatch(Predicate<T>): Returns true if any element of the Stream matches the given predicate.
+allMatch(Predicate<T>): Returns true if all elements of the Stream match the given predicate.
+noneMatch(Predicate<T>): Returns true if no elements of the Stream match the given predicate.
+findFirst(): Returns an Optional describing the first element of the Stream, or an empty Optional if the Stream is empty.
+findAny(): Returns an Optional describing some element of the Stream, or an empty Optional if the Stream is empty.
+
+3. Short-Circuit Operations
+Short-circuit operations are a subset of terminal operations that do not need to process the entire Stream to produce a result. They can provide an early exit from the stream processing pipeline, potentially saving computation time.
+
+Common Short-Circuit Operations:
+
+anyMatch(Predicate<T>): Stops processing and returns true if any element matches the given predicate.
+allMatch(Predicate<T>): Stops processing and returns false if any element does not match the given predicate.
+noneMatch(Predicate<T>): Stops processing and returns true if no elements match the given predicate.
+findFirst(): Returns the first element encountered in the Stream and then stops processing.
+findAny(): Returns any element encountered in the Stream and then stops processing.

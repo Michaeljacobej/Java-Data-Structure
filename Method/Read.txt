@@ -1,0 +1,19 @@
+Method Overloading
+Method overloading is a feature in Java that allows multiple methods with the same name but different parameter lists to exist within the same class. It enhances the flexibility and readability of the code.
+
+Example
+
+
+
+Method Overriding
+Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its superclass. It is a key aspect of polymorphism in Java, allowing subclasses to customize or extend the behavior of inherited methods.
+
+Java Lambda Expressions
+Lambda Expressions were added in Java 8.
+
+A lambda expression is a short block of code which takes in parameters and returns a value.
+Lambda expressions are similar to methods, but they do not need a name and they can be implemented right in the body of a method.
+
+
+Example
+
