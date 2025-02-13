@@ -12,7 +12,8 @@ The list of data structures in java listed below
 10. Graph
 11. Tree
 
-    1. Arrays is a basic and often used data structure in the context of java data structure
+    # Arrays 
+    ## is a basic and often used data structure in the context of java data structure
 
       a. Advantages
 
@@ -35,7 +36,8 @@ The list of data structures in java listed below
         - finding length use the length attribute to determine the arrays length
         - iterating through array use loop to go through each element in the array execure
 
-    2.  ArrayList in java dynamix data structure that allows for the storage and manipulation element
+    #  ArrayList 
+    ## java dynamix data structure that allows for the storage and manipulation element
 
       a. Advantages
 
@@ -59,7 +61,8 @@ The list of data structures in java listed below
         - removing element
         - iterating through the array list
 
-    3. LinkedList is a linear data structure in whic elements are stored in separate objects called nodes
+    # LinkedList 
+    ## is a linear data structure in whic elements are stored in separate objects called nodes
 
       a. Advantages
         - dynamic size linkedList can grow or shink dynamically making it suitable for varying or unknown data sizes
@@ -79,7 +82,8 @@ The list of data structures in java listed below
         - Modifying Elements
         - Removing Elements
     
-    4. HashMap is data structure in java that provides a way to store and retrieve key value pairs
+    # HashMap
+    ## is data structure in java that provides a way to store and retrieve key value pairs
       
       a. Advantages
         - Efficient Retrieval: Hash Map provides fast retrieval of values based on keys with constant time complexity
@@ -104,7 +108,8 @@ The list of data structures in java listed below
         - values: returs a collection containing all the values in the hashmap
         - clear: removes all the key value pairs from the hashmap
     
-    5. HashSet : is a data structure in java that implements the set interface and sttores elements in a hash table
+    # HashSet
+    ## is a data structure in java that implements the set interface and sttores elements in a hash table
       
       a. Advantages:
         - Fast Elemet lookup: Hashset provides fast lookup operations making it efficient to check if an element exist in the set
@@ -121,7 +126,8 @@ The list of data structures in java listed below
         - Uses hash-based lookup: hashset uses the hash value of each element to determine its storage location, providing efficient element retrieval
         - Unordered collection: the elements in a hashset are not stored in a specific order
         
-      6. TreeSet : is an implementation of the sortedGet interface in java that uses a self balancing binary search tree called a red black tree to store elements in sorted order
+    # TreeSet 
+    ## is an implementation of the sortedGet interface in java that uses a self balancing binary search tree called a red black tree to store elements in sorted order
 
       a. Advantages
 
@@ -146,7 +152,8 @@ The list of data structures in java listed below
         - higher(element): returns the least element un the treeset that is strictly greater
         - lower(element):returns the greates element in the treeSet
 
-      7. TreeMap: is a class in java that implements the map interface and provides a sorted key value mapping
+    # TreeMap
+    ## is a class in java that implements the map interface and provides a sorted key value mapping
 
       a. Advantages
 
@@ -171,7 +178,8 @@ The list of data structures in java listed below
         - values(): returns a collection of all values in the treemap
         - entrySet(): returns a set of keyvalue pairs in the treemap
 
-      8. Tree: is widely used data structure in computer science that represents a hierarchical structure
+    # Tree
+    ## is widely used data structure in computer science that represents a hierarchical structure
 
       a. Advantages
 
@@ -194,7 +202,8 @@ The list of data structures in java listed below
         - Height/Depth: Calculate the heigh or depth of the tree
         - Balance: Ensure the tree remains balanced to maintain efficient operations
 
-    9. Stacks: the last in first out principle dictates that the element that was most recently inserted is also the element that is removed first
+    # Stacks
+    ## the last in first out principle dictates that the element that was most recently inserted is also the element that is removed first
 
       a. Advantages:
 
@@ -214,7 +223,8 @@ The list of data structures in java listed below
         - Limited Access: Stacks typically provide restricted access to elements
         - Dynamic size: Stacks can be implemented using arrays or linked list
 
-    10. Queue: is a linear data structure in java that follows the first in first out(FIFO) principle
+    # Queue
+    ## is a linear data structure in java that follows the first in first out(FIFO) principle
 
 
       a. Advantages
@@ -236,7 +246,8 @@ The list of data structures in java listed below
         - Size: Determining the number of elements in the queue
         - Empty CheckK Checking if the queue is empty
 
-      11. Graph: are data structure that represent a collection of interconnected nodes or vertices
+      # Graph
+      ## are data structure that represent a collection of interconnected nodes or vertices
 
         a. Advantages
         - Versatility : graphs can represent a wide range of real world scenarios
