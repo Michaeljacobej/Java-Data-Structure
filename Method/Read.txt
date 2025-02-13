@@ -1,10 +1,6 @@
 Method Overloading
 Method overloading is a feature in Java that allows multiple methods with the same name but different parameter lists to exist within the same class. It enhances the flexibility and readability of the code.
 
-Example
-
-
-
 Method Overriding
 Method overriding occurs when a subclass provides a specific implementation for a method that is already defined in its superclass. It is a key aspect of polymorphism in Java, allowing subclasses to customize or extend the behavior of inherited methods.
 
@@ -14,6 +10,23 @@ Lambda Expressions were added in Java 8.
 A lambda expression is a short block of code which takes in parameters and returns a value.
 Lambda expressions are similar to methods, but they do not need a name and they can be implemented right in the body of a method.
 
+Lambda expressions in Java, introduced in Java SE 8, represent instances of functional interfaces (interfaces with a single abstract method). 
+They provide a concise way to express instances of single-method interfaces using a block of code.
 
-Example
+Functionalities of Lambda Expression
+Lambda Expressions implement the only abstract function and therefore implement functional interfaces 
+lambda expressions are added in Java 8 and provide the below functionalities.
 
+Functional Interfaces: A functional interface is an interface that contains only one abstract method.
+Code as Data: Treat functionality as a method argument.
+Class Independence: Create functions without defining a class.
+Pass and Execute: Pass lambda expressions as objects and execute on demand.
+
+1. Lambda Expression with Zero parameter 
+() -> System.out.println(“Zero parameter lambda”);
+
+2. Lambda Expression with Single parameter
+(p) -> System.out.println(“One parameter: ” + p);
+
+3. Lambda Expression with Multiple parameters
+(p1, p2) -> System.out.println(“Multiple parameters: ” + p1 + “, ” + p2);
