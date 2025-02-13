@@ -59,7 +59,7 @@ The list of data structures in java listed below
         - removing element
         - iterating through the array list
 
-    # LinkedList is a linear data structure in whic elements are stored in separate objects called nodes
+    # LinkedList is a linear data structure in which elements are stored in separate objects called nodes
 
       a. Advantages
         - dynamic size linkedList can grow or shink dynamically making it suitable for varying or unknown data sizes
