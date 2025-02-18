@@ -1,0 +1,16 @@
+What is Authentication?
+Authentication ensures that the user or the client is the one who is claim to be.
+There are many ways in which Spring Security enables us to perform authentication. 
+Spring Security supports Basic Authentication, LDAP authentication, JDBC authentication, etc.
+
+Authentication is the method of verifying the identity of a consumer or system to ensure they’re who they claim to be. 
+It involves checking credentials which include usernames, passwords, or biometric information like fingerprints or facial recognition. 
+This step is vital for securing access to systems, programs, and sensitive records. 
+By confirming identities, authentication saves you from unauthorized entry and protects you against safety breaches.
+
+What is Authorization?
+Authorization ensures whether the user has permission for the action or not. 
+If our application is a complex one, with different kinds of users such as admins, regular users, other less privileged users, we need to maintain access control in our application.
+For example, a guest user should not be able to access admin content. 
+So, to control access to various resources within our application, we need to check if a user has permission to access that resource. 
+Spring Security supports roles, claims etc. to provide user level authorization.

@@ -1,0 +1,162 @@
+Spring JDBC
+Spring JDBC is the direct approach provided by the Spring Framework to handle database operations. It leverages the JDBC API but eliminates the boilerplate code associated with it.
+
+Core Features:
+JdbcTemplate for simplified database interaction
+Exception translation into Spring’s DataAccessException
+Consistent API to target different databases
+
+Pros:
+Direct Control Over SQL Queries: Spring JDBC allows you to write your SQL queries explicitly, giving you complete control over the database interactions.
+
+String sql = "SELECT * FROM users WHERE email = ?";
+User user = jdbcTemplate.queryForObject(sql, new Object[]{email}, new BeanPropertyRowMapper<>(User.class));
+High Performance: With Spring JDBC, there’s minimal overhead between your application and the database, leading to potentially better performance.
+
+Simplicity for Small Projects: For simple applications, Spring JDBC can be straightforward to use without the complexity of an ORM.
+
+Cons:
+More Boilerplate Code: Even with the simplifications of JdbcTemplate, you still need to write and manage SQL queries and map results manually.
+
+jdbcTemplate.query(
+    "SELECT id, name, email FROM users",
+    (rs, rowNum) -> new User(rs.getLong("id"), rs.getString("name"), rs.getString("email"))
+).forEach(user -> System.out.println(user.getName()));
+Higher Risk of SQL Injection: If not careful with input handling, SQL injection can be a risk.
+
+String unsafeSql = "SELECT * FROM users WHERE email = '" + userEmail + "'";
+// This is unsafe if userEmail is not properly sanitized
+Less Abstraction: Handling relationships and complex queries can become cumbersome as the complexity of the domain model grows.
+
+
+Spring Data JPA
+Spring Data JPA is an abstraction layer that sits on top of the Java Persistence API. It simplifies data access within the Spring application ecosystem.
+
+Core Features:
+Simple CRUD operations with CrudRepository
+Automatic query generation from method names
+Advanced pagination and dynamic query execution
+Pros:
+Reduces Boilerplate Code: Repositories in Spring Data JPA can significantly reduce the amount of boilerplate code required.
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    User findByEmail(String email);
+}
+Strong Abstraction Layer: Spring Data JPA handles the complexity of mapping objects to database tables, making it easier to work with complex data models.
+
+Easier to Maintain: The abstraction provided by Spring Data JPA makes it easier to maintain and update the data access layer of your application.
+
+
+Key Differences
+Calling a stored procedure that takes a table as an input parameter is a more advanced use case and is typically database-specific. Let’s consider an example where we have a stored procedure that accepts a table type parameter in SQL Server. We’ll compare how to call this stored procedure using both Spring JDBC and Spring Data JPA.
+
+
+Spring JDBC Stored Procedure Call with Table Type Parameter:
+In Spring JDBC, you would need to extend the StoredProcedure class and set up the parameters accordingly. However, since JDBC does not natively support table types as parameters, you would typically need to use an array or a structured object that the specific database driver supports.
+
+Here’s an example using SQL Server with the SqlServerDataTable type from the Microsoft JDBC Driver:
+
+public class UserStoredProcedure extends StoredProcedure {
+    
+    public UserStoredProcedure(DataSource dataSource) {
+        super(dataSource, "dbo.updateUserEmails");
+        declareParameter(new SqlParameter("userEmails", Types.STRUCT));
+        setFunction(false);
+        compile();
+    }
+
+public Map<String, Object> execute(SqlServerDataTable userEmailsTable) {
+        Map<String, Object> inParams = new HashMap<>();
+        inParams.put("userEmails", userEmailsTable);
+        return super.execute(inParams);
+    }
+}
+
+In this example, SqlServerDataTable is used to pass a table of user emails to the stored procedure. The execute method is then called with this table as a parameter.
+
+Pros:
+
+Direct control over the stored procedure execution.
+Ability to leverage database-specific features and types.
+Cons:
+
+Complexity in setting up and using database-specific types.
+More verbose and less portable code due to database-specific extensions.
+
+Spring Data JPA Stored Procedure Call with Table Type Parameter:
+Spring Data JPA does not directly support table type parameters for stored procedures. This is because JPA is designed to be database-agnostic, and table types are a feature specific to certain databases like SQL Server.
+
+However, you can still execute such stored procedures by using native queries or by using the EntityManager to create a native SQL query. Here's an example using EntityManager:
+
+@Repository
+public class UserRepository {
+
+@PersistenceContext
+    private EntityManager entityManager;
+    public void updateUserEmails(SqlServerDataTable userEmailsTable) {
+        // Convert SqlServerDataTable to a format that can be passed to the stored procedure
+        // This step is highly dependent on the database and JPA provider capabilities
+        Object convertedTable = convertSqlServerDataTable(userEmailsTable);
+        StoredProcedureQuery query = entityManager.createStoredProcedureQuery("dbo.updateUserEmails");
+        query.registerStoredProcedureParameter(1, Object.class, ParameterMode.IN);
+        query.setParameter(1, convertedTable);
+        query.execute();
+    }
+    
+    private Object convertSqlServerDataTable(SqlServerDataTable table) {
+        // Conversion logic here
+        return ...;
+    }
+}
+In this example, you would need to convert the SqlServerDataTable to a format that your JPA provider can understand, which may not be straightforward and could require custom implementation.
+
+Pros:
+
+Consistent with the Spring Data JPA repository approach.
+Cons:
+
+Lack of direct support for table type parameters in JPA.
+Potentially complex conversion logic to work around JPA limitations.
+
+Other Key Differences
+Approach and Design Philosophy
+Spring JDBC is a lower-level approach that provides a thin layer over standard JDBC, which means you work closely with SQL and manual object mapping. In contrast, Spring Data JPA is a higher-level abstraction that works with objects and their metadata to automatically handle SQL creation and result mapping.
+
+Code Complexity and Development Speed
+With Spring JDBC, developers have to write more code to execute queries and map results to objects. This can slow down development but offers more control. Spring Data JPA reduces the amount of boilerplate code significantly, which can accelerate development, especially in complex applications with many domain objects.
+
+Configuration and Boilerplate Code
+Spring JDBC requires explicit configuration for each query and manual mapping of results to domain objects. Spring Data JPA, with its repository pattern, reduces this need by providing standard methods and custom query creation through method names.
+
+Performance Considerations
+Spring JDBC can be more performant due to its direct use of SQL and lower overhead. Spring Data JPA might introduce some overhead due to its abstraction, but this can be mitigated with proper use of JPA features like lazy loading and fetch strategies.
+
+Transaction Management
+Both Spring JDBC and Spring Data JPA integrate with Spring’s transaction management. However, Spring JDBC may require more manual intervention to ensure transactions are handled correctly, while Spring Data JPA benefits from the declarative transaction management provided by the JPA repository layer.
+
+Integration with Other Spring Projects
+Spring Data JPA is part of the larger Spring Data family, which provides consistent data access across a wide range of databases and data stores. Spring JDBC can be used with other Spring projects, but it doesn’t have the same level of integration and consistency as Spring Data JPA.
+
+Use Cases
+Spring JDBC Use Cases:
+Applications that require fine-tuned SQL queries for performance optimization.
+Legacy systems where migrating to an ORM is not feasible.
+Projects where developers have strong SQL skills and prefer close-to-the-metal database interactions.
+Spring Data JPA Use Cases:
+Applications with a complex domain model where automatic CRUD operations can save time.
+Projects that benefit from the repository pattern and the ability to create queries from method names.
+Systems that require easy integration with other data stores and caching mechanisms.
+
+Making the Right Choice
+When choosing between Spring JDBC and Spring Data JPA, consider the following factors:
+
+Project Size and Complexity: For simple projects with straightforward database interactions, Spring JDBC might be sufficient. For complex projects with a rich domain model, Spring Data JPA could be more beneficial.
+Performance Needs: If performance and SQL optimization are critical, Spring JDBC provides the necessary control.
+Development Speed: If rapid development and ease of maintenance are priorities, Spring Data JPA’s repositories can speed up the development process.
+Team Expertise: Consider the team’s familiarity with SQL, JPA, and ORM concepts. Spring JDBC might be more comfortable for a team with strong SQL skills, while Spring Data JPA requires understanding of ORM principles.
+
+
+Conclusion
+The choice between Spring JDBC and Spring Data JPA often boils down to the specific needs of the project and the preferences of the development team. For those who prefer full control over SQL and have the expertise to manage it, Spring JDBC is an excellent choice. On the other hand, Spring Data JPA offers a higher level of abstraction that can greatly speed up development time for complex applications, at the potential cost of some performance and control.
+
+the next learn after system design is spring cloud and spring security

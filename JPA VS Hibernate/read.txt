@@ -1,0 +1,184 @@
+https://www.tutorialspoint.com/system_analysis_and_design/horizontal_vertical_scaling.htm
+
+https://dev.to/jayaprasanna_roddam/system-design-load-balancing-823
+
+ORM:
+Spring data JPA
+Hibernate
+Ebean
+
+JDBC:
+JDBI3
+JDBC Template
+
+
+Spring data JPA
+What is JPA
+Java persistence API is a collection of classes and methods to persistently store the vast amount of data into a database whic is provided by the Oracle Corperation
+
+Where to use JPA?
+to reduce the burden of writing codes for relational object management, a programmer follows the JPA Provider framework which allows easy interaction with database instance
+
+Spring Data JPA is a higher-level framework that builds on top of Hibernate and provides a simpler, more streamlined API for working with JPA (Java Persistence API) entities. It provides a number of conveniences, such as automatically generating common database queries and handling transactions, freeing you from having to write boilerplate code
+
+JPA Provider
+JPA is an open source API , Therefore various enterprise vendos such as Oracle ,Redhat ,Eclipse, Etc , provide new products by adding the JPA persistence flavor in them
+
+some of these products include:
+Hibernate , EclipseLink , TopLink , Spring data JPA ,etc
+
+Architecture JP
+
+1. EntityManagerFactory
+   This is a factory class of EntityManager. it creates and manages multiple EntityManager instances
+
+2. EntityManager
+   it is an instance, it manages the persistence operations on object. it works like factory for query instances
+
+3. Entity
+   Entitites are the persistence objects, stores as records in the database
+
+4. EntityTransaction
+   it has one to one relationship with EntityManager. for each EntityManager operations are maintained by EntityTransaction Class
+
+5. Persistence
+   this class contain static methods to obtain EntityManagerFactory instances
+
+6. Query
+   this interface is implemented by each JPA vendor to obtain relational objects that meet the criteria
+
+
+JPA Class Relationships
+In the above architecture, the relations between the classes and interfaces belong to the javax.persistence package. The following diagram shows the relationship between them.
+
+
+The relationship between EntityManagerFactory and EntityManager is one-to-many. It is a factory class to EntityManager instances.
+
+The relationship between EntityManager and EntityTransaction is one-to-one. For each EntityManager operation, there is an EntityTransaction instance.
+
+The relationship between EntityManager and Query is one-to-many. Many number of queries can execute using one EntityManager instance.
+
+The relationship between EntityManager and Entity is one-to-many. One EntityManager instance can manage multiple Entities.
+
+
+What is the need of JPA?
+The java persistence API addreses the need for a standardized & effective way to interact with relational database in java applications. Several factors underscore the necessities for JPA:
+
+Simplified Data interaction
+Object relational Mapping 
+code portability across databases
+standardized across Java EE & Jakarta EE
+anotaiton for mapping
+Query Languages
+Entity lifecycle managemenet
+
+Advantages& Disadvantages of JPA
+
+Pros of using JPA
+Uniformity:JPA offers a uniform method for utilizing ORM to map object to relational data
+
+simplified Database Access Code : JPA and JPQL streamline intricate ORM mapping
+
+portability:application can  be transferred among JPA implementation such as Eclipse Link , Hibernate etc
+
+Java EE integration: JPA easily combines with component models such us CDI , JSF and application servers for java EE
+
+Database agnostic : JPA encapsulates the underlying database to enable database portability
+
+Active Development: JPA is created and maintained by the JCP as part of Java EE
+
+
+Cons of using JPA
+lack of implementation: JPA does not offer an ORM implementation it merely specifies interfaces and contracts
+
+Restricted performance : JPA does not describe sophisticated performance capabilities such as lazy loading or caching
+
+leaky abstraction: for complex reporting requirement , developers frequently require knowledge of SQL and the underlying database
+
+Verbose API:when compared to less complex options API such as EntityManager are excessively verbose
+
+What is Hibernate
+Hibernate is an Object-Relational Mapping (ORM) solution for JAVA. It is an open source persistent framework created by Gavin King in 2001. It is a powerful, high performance Object-Relational Persistence and Query service for any Java Application.
+
+Hibernate is a full-featured ORM (Object-Relational Mapping) framework that provides a lot of options for mapping objects to database tables, querying data, and managing transactions. It also provides a lot of low-level control over the SQL that is generated, allowing you to tune the performance of your database interactions.
+
+what is the need of hibernate?
+hibernate addreses several needs in the context of java development particulary in simplifying and optimizing database interactions. following are some of the key reason which highlight the need of hibernate:
+
+Object Relational Mapping
+Database Independence
+Code Reliability and Maintainability
+Hibernate Query language
+Configuration Flexibility
+Lazy Loading
+transaction Management
+Caching mechanism
+Community Support
+Integration with java
+
+Pros of using hibernate
+Feature rich and well established : Expert level Object Relational Mapping framework hibernate provides a wealth of functionality
+
+scalability and performance are addressed by using scalability enhancing strategies like lazy loading and caching
+
+database portability: application portability between different SQL databases such as Oracle, MySQL and PostgreeSQL is ensured via database portability
+
+Open Source: Hibernate has a strong community of supporters because to its LGPL lincensing
+
+Simplicity: Streamlines database access code, making it less complicated than utilizing pure JDBC
+
+Integration: Integtares seamlessly with a variety of platform using various adapters
+
+Information: Hibernate is easier to grasp because to a wealth of information and learning resources
+
+Cons of using hibernate
+Steep Learning Curve: it van be overwhelming to the nuances due to numerous configuration option
+
+Complexity: With the variety of advanced features and mapping hibernate can make it more complex compared to the simple ORM tools
+
+Vendor lock in: migration issuen and vendor lock in may result from using proprietary hibernate api
+
+legacy codeBage: older programming techniques are used in several areas of the hibernate codebase which call for going maintenance
+
+so conclusion
+
+Spring Data JPA is an abstraction layer on top of JPA to reduce the amount of boilerplate code required to implement data access object(DAO)
+
+JPA is just a specification that facilitates object relational mapping to manage relational data in java applications
+
+hibernate is a JPA implementation
+
+hibernate generates SQL query and executes using JDBC
+
+this is the example of Hibernate
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+public class HibernateUserRepository {
+
+    public void save(User user) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(user);
+        transaction.commit();
+        session.close();
+    }
+
+    public User findById(Long id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        User user = session.get(User.class, id);
+        session.close();
+        return user;
+    }
+
+}
+
+and here equivalent repository class using spring data JPA
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SpringDataJpaUserRepository extends JpaRepository<User, Long> {
+
+}
+
